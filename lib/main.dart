@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Calculator App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       home: const MyHomePage(title: 'Calculator'),
     );
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String operand = "";
 
   buttonPressed(String buttonText){
-    if(buttonText == "CLEAR"){
+    if(buttonText == "C"){
       _output = '0';
       num1 = 0;
       num2 = 0;
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildButton(String buttonText){
     return Expanded(
         child: SizedBox(
-          height: 70.0,
+          height: 90.0,
           child: Padding(
             padding: const EdgeInsets.all(2.0),
             child: OutlinedButton(
@@ -94,7 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text(
                 buttonText,
                 style: const TextStyle(
-                  fontSize: 20.0,
+                  color: Colors.pink,
+                  fontSize:20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -109,58 +110,64 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title, style: const TextStyle(
+          color: Colors.white,
+        ),),
       ),
       body: Column(
         children: <Widget>[
           Container(
+            color: Colors.white,
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
             child: Text(output,
               style: const TextStyle(
-              fontSize: 48.0,
+                color: Colors.black,
+              fontSize: 50.0,
               fontWeight: FontWeight.bold,
             ),
             ),
           ),
-          const Expanded(child: Divider(),),
-          Column(
-            children: [
-              Row(
+          const Expanded(child: Divider(color: Colors.white),),
+          Container(
+            color: Colors.white70,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    buildButton('7'),
+                    buildButton('8'),
+                    buildButton('9'),
+                    buildButton('/'),
+                  ],
+                ),
+                Row(
                 children: [
-                  buildButton('7'),
-                  buildButton('8'),
-                  buildButton('9'),
-                  buildButton('/'),
+                  buildButton('4'),
+                  buildButton('5'),
+                  buildButton('6'),
+                  buildButton('×'),
                 ],
               ),
-              Row(
-              children: [
-                buildButton('4'),
-                buildButton('5'),
-                buildButton('6'),
-                buildButton('×'),
+                Row(
+                  children: [
+                    buildButton('1'),
+                    buildButton('2'),
+                    buildButton('3'),
+                    buildButton('-'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    buildButton('C'),
+                    buildButton('0'),
+                    buildButton('='),
+                    buildButton('+'),
+                  ],
+                ),
               ],
             ),
-              Row(
-                children: [
-                  buildButton('1'),
-                  buildButton('2'),
-                  buildButton('3'),
-                  buildButton('-'),
-                ],
-              ),
-              Row(
-                children: [
-
-                  buildButton('CLEAR'),
-                  buildButton('0'),
-                  buildButton('='),
-                  buildButton('+'),
-                ],
-              ),
-         ],
-         ),
+          ),
         ],
       ),
     );
